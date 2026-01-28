@@ -29,7 +29,8 @@ namespace symulacjafirmy
 
         private void zadania(object sender, RoutedEventArgs e)
         {
-
+            zadania okno2 = new zadania();
+            okno2.Show();
         }
     }
 }
