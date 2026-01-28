@@ -20,5 +20,15 @@ namespace symulacjafirmy
         {
             InitializeComponent();
         }
+
+        private void uzytkownicy(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void zadania(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
