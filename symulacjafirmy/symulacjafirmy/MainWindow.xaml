@@ -20,5 +20,36 @@
             <RowDefinition/>
             <RowDefinition Height="20px"/>
         </Grid.RowDefinitions>
+        <TextBlock Grid.Row="1" 
+                   Grid.Column="1" 
+                   TextAlignment="Center" 
+                   FontSize="32"
+                   Margin="10px">
+            Dashboard
+        </TextBlock>
+        <TextBlock Grid.Row="1" 
+                   Grid.Column="3" 
+                   TextAlignment="Center" 
+                   FontSize="32"
+                   Margin="10px">
+            Symulacja Firmy
+        </TextBlock>
+        <StackPanel Grid.Column="3" Grid.Row="2">
+            <Button
+            Margin="10" 
+            Padding="10"
+            Click="uzytkownicy"
+            FontSize="20">
+                Użytkownicy
+            </Button>
+
+            <Button
+            Margin="10" 
+            Padding="10"
+            Click="zadania"
+            FontSize="20">
+                Zadania
+            </Button>
+        </StackPanel>
     </Grid>
 </Window>
