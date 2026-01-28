@@ -23,7 +23,8 @@ namespace symulacjafirmy
 
         private void uzytkownicy(object sender, RoutedEventArgs e)
         {
-
+            users okno = new users();
+            okno.Show();
         }
 
         private void zadania(object sender, RoutedEventArgs e)
