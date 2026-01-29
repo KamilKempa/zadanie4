@@ -1,39 +1,41 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using symulacjafirmy.Models;
 using symulacjafirmy.Services;
 
 namespace symulacjafirmy
 {
-    /// <summary>
-    /// Logika interakcji dla klasy users.xaml
-    /// </summary>
-  
     public partial class users : Window
     {
-        private UsersService service = new UsersService();
         private Uzytkownik editingUser = null;
-    
+
         public users()
         {
             InitializeComponent();
-            uzytkownicyGrid.ItemsSource = service.Uzytkownicy;
-            service.Dodaj(new Uzytkownik { Imie = "Jan", Nazwisko = "Kowalski", RokUrodzenia = 2003 });
-            service.Dodaj(new Uzytkownik { Imie = "Anna", Nazwisko = "Kowalska", RokUrodzenia = 2002 });
-            service.Dodaj(new Uzytkownik { Imie = "ROOT", Nazwisko = "ROOT", RokUrodzenia = 1 });
-            ;
+            uzytkownicyGrid.ItemsSource = AppData.Uzytkownicy;
+            if (AppData.Uzytkownicy.Count == 0)
+            {
+                AppData.Uzytkownicy.Add(new Uzytkownik
+                {
+                    Imie = "Jan",
+                    Nazwisko = "Kowalski",
+                    RokUrodzenia = 2003
+                });
+
+                AppData.Uzytkownicy.Add(new Uzytkownik
+                {
+                    Imie = "Anna",
+                    Nazwisko = "Kowalska",
+                    RokUrodzenia = 2002
+                });
+
+                AppData.Uzytkownicy.Add(new Uzytkownik
+                {
+                    Imie = "ROOT",
+                    Nazwisko = "ROOT",
+                    RokUrodzenia = 1
+                });
+            }
         }
 
         private void zatwierdzuzytkownik(object sender, RoutedEventArgs e)
@@ -48,12 +50,12 @@ namespace symulacjafirmy
                     editingUser.Nazwisko = nazwisko.Text;
                     editingUser.RokUrodzenia = rok;
 
-                    uzytkownicyGrid.Items.Refresh(); 
+                    uzytkownicyGrid.Items.Refresh();
                     editingUser = null;
                 }
                 else
                 {
-                    service.Dodaj(new Uzytkownik
+                    AppData.Uzytkownicy.Add(new Uzytkownik
                     {
                         Imie = imie.Text,
                         Nazwisko = nazwisko.Text,
@@ -67,7 +69,7 @@ namespace symulacjafirmy
             }
             else
             {
-                MessageBox.Show("wypelnij poprawnie wszystkie pola");
+                MessageBox.Show("Wypełnij poprawnie wszystkie pola!");
             }
         }
 
@@ -75,7 +77,7 @@ namespace symulacjafirmy
         {
             if (sender is Button btn && btn.Tag is Uzytkownik user)
             {
-                service.Usun(user);
+                AppData.Uzytkownicy.Remove(user);
             }
         }
 
@@ -87,7 +89,7 @@ namespace symulacjafirmy
                 nazwisko.Text = user.Nazwisko;
                 rokurodzenia.Text = user.RokUrodzenia.ToString();
 
-                editingUser = user; 
+                editingUser = user;
             }
         }
     }
