@@ -1,36 +1,38 @@
-﻿using System.Text;
+﻿using System.Linq;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using symulacjafirmy.Services;
 
 namespace symulacjafirmy
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         public MainWindow()
         {
             InitializeComponent();
+            OdswiezDashboard();
+        }
+
+        private void OdswiezDashboard()
+        {
+            DashboardGrid.ItemsSource = AppData.Zadania
+                .Where(z => z.Czyzrealizowane == false)
+                .ToList();
         }
 
         private void uzytkownicy(object sender, RoutedEventArgs e)
         {
-            users okno = new users();
-            okno.Show();
+            users u = new users();
+            u.ShowDialog();
+
+            OdswiezDashboard();
         }
 
         private void zadania(object sender, RoutedEventArgs e)
         {
-            zadania okno2 = new zadania();
-            okno2.Show();
+            zadania z = new zadania();
+            z.ShowDialog();
+
+            OdswiezDashboard();
         }
     }
 }

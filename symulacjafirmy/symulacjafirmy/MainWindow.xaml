@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:symulacjafirmy"
         mc:Ignorable="d"
         Title="Symulacja Firmy" Height="768" Width="1024">
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20px"/>
@@ -14,42 +15,73 @@
             <ColumnDefinition/>
             <ColumnDefinition Width="20px"/>
         </Grid.ColumnDefinitions>
+
         <Grid.RowDefinitions>
             <RowDefinition Height="20px"/>
             <RowDefinition Height="auto"/>
             <RowDefinition/>
             <RowDefinition Height="20px"/>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="1" 
-                   Grid.Column="1" 
-                   TextAlignment="Center" 
+
+        <TextBlock Grid.Row="1"
+                   Grid.Column="1"
+                   TextAlignment="Center"
                    FontSize="32"
                    Margin="10px">
             Dashboard
         </TextBlock>
-        <TextBlock Grid.Row="1" 
-                   Grid.Column="3" 
-                   TextAlignment="Center" 
+
+        <TextBlock Grid.Row="1"
+                   Grid.Column="3"
+                   TextAlignment="Center"
                    FontSize="32"
                    Margin="10px">
             Symulacja Firmy
         </TextBlock>
+
+        <DataGrid Grid.Column="1"
+                  Grid.ColumnSpan="2"
+                  Grid.Row="2"
+                  Margin="10"
+                  x:Name="DashboardGrid"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Tytuł"
+                                    Binding="{Binding Tytul}"
+                                    Width="*"/>
+
+                <DataGridTextColumn Header="Opis"
+                                    Binding="{Binding Opis}"
+                                    Width="*"/>
+
+                <DataGridTextColumn Header="Osoba"
+                                    Binding="{Binding Osoba}"
+                                    Width="*"/>
+            </DataGrid.Columns>
+
+        </DataGrid>
+
         <StackPanel Grid.Column="3" Grid.Row="2">
-            <Button
-            Margin="10" 
-            Padding="10"
-            Click="uzytkownicy"
-            FontSize="20">
+
+            
+
+            <Button Margin="10"
+                    Padding="10"
+                    Click="uzytkownicy"
+                    FontSize="20">
                 Użytkownicy
             </Button>
 
-            <Button
-            Margin="10" 
-            Padding="10"
-            Click="zadania"
-            FontSize="20">
+            <Button Margin="10"
+                    Padding="10"
+                    Click="zadania"
+                    FontSize="20">
                 Zadania
             </Button>
+
         </StackPanel>
+
     </Grid>
 </Window>
